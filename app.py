@@ -51,7 +51,13 @@ def api_demo():
 def api_clear():
     clear_events()
     return jsonify({"ok": True})
+import os
 
 if __name__ == "__main__":
-    # Local-only dashboard; do not expose this development server to the public internet.
-    app.run(host="127.0.0.1", port=5000, debug=False, threaded=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False,
+        threaded=True
+    )
