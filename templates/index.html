@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NetShield IDS | Network Monitor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">N</div>
+    <div><h1>NetShield IDS</h1><p>Python-based Network Intrusion Detection System</p></div>
+    <span id="statusPill" class="pill offline">● Offline</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">COMPUTER NETWORKS PROJECT</p>
+        <h2>Network activity, <span>in focus.</span></h2>
+        <p class="muted">Monitor packet metadata, detect unusual patterns, and review security events.</p>
+      </div>
+      <div class="controls">
+        <label for="interfaceInput">Interface name <span>(optional)</span></label>
+        <input id="interfaceInput" type="text" placeholder="Default interface">
+        <div class="button-row">
+          <button id="startBtn" class="primary">Start monitoring</button>
+          <button id="stopBtn" class="secondary">Stop</button>
+        </div>
+        <button id="demoBtn" class="outline">Add simulated demo events</button>
+        <p id="notice" class="notice" role="status">Dashboard ready. Use demo events to test without live capture.</p>
+      </div>
+    </section>
+
+    <section class="cards">
+      <article class="stat-card"><p>Total events</p><strong id="totalEvents">0</strong><span>Saved in SQLite</span></article>
+      <article class="stat-card"><p>High severity</p><strong id="highEvents">0</strong><span class="red-text">Review these first</span></article>
+      <article class="stat-card"><p>Medium severity</p><strong id="mediumEvents">0</strong><span>Rule-based warnings</span></article>
+      <article class="stat-card"><p>Unique source IPs</p><strong id="uniqueSources">0</strong><span>Across recorded events</span></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><h3>Security event log</h3><p class="muted">Newest events appear first; refreshes automatically.</p></div>
+        <button id="clearBtn" class="text-button">Clear log</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Source IP</th><th>Destination IP</th><th>Protocol</th><th>Port</th><th>Severity</th><th>Event</th></tr></thead>
+          <tbody id="eventsBody"><tr><td colspan="7" class="empty">No events yet. Add demo events or start monitoring.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Educational IDS prototype · Detection rules are heuristic and may produce false positives.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
